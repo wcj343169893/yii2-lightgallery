@@ -1,22 +1,25 @@
 {
-    "name": "kowap/yii2-lightgallery",
-    "description": "lightgallery",
+    "name": "dynamikaweb/yii2-lightgallery",
+    "description": "widget lightgallery",
     "type": "yii2-extension",
     "keywords": ["yii2","extension"," gallery"," photo"," video"," lightgallery"," plugin"],
     "license": "BSD-3-Clause",
     "authors": [
         {
-            "name": "Biloborodov Ilya",
-            "email": "biloborodov.ilya@gmail.com"
+            "name": "Robson Soares",
+            "email": "contato@robsonsoares.dev.br",
+            "role": "developer"
         }
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "bower-asset/lightgallery": "*"
+        "npm-asset/lightgallery": "*"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": false,
     "autoload": {
         "psr-4": {
-            "kowap\\lightgallery\\": ""
+            "dynamikaweb\\lightgallery\\": "src"
         }
     }
 }

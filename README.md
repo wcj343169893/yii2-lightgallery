@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-composer require kowap/yii2-lightgallery
+composer require dynamikaweb/yii2-lightgallery
 ```
 
 or add
 
 ```
-"kowap/yii2-lightgallery": "*"
+"dynamikaweb/yii2-lightgallery": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -29,7 +29,7 @@ Once the extension is installed, simply use it in your code by  :
 
 ```php
 <?php
-    echo \kowap\lightgallery\LightGalleryWidget::widget([
+    echo \dynamikaweb\lightgallery\LightGallery::widget([
         'items' => [
             [
                 'thumb' => '../thumb/image_1.jpg',

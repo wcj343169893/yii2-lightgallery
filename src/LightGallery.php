@@ -1,12 +1,12 @@
 <?php
 
-namespace kowap\lightgallery;
+namespace dynamikaweb\lightgallery\src;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
 
-class LightGalleryWidget extends \yii\base\Widget
+class LightGallery extends \yii\base\Widget
 {
     public $containerClass = 'k-ld';
     public $options = [];
