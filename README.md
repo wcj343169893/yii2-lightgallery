@@ -33,15 +33,25 @@ Once the extension is installed, simply use it in your code by  :
         'items' => [
             [
                 'thumb' => '../thumb/image_1.jpg',
-                'src' => '../big/image_1.jpg'
+                'src' => '../big/image_1.jpg',
+                'caption' => '<h4> caption </h4><p> ... </p>',
+                'imgOptions' => [
+                    'width' => '100%',
+                    'alt' => 'description'
+                ]
             ],
             [
                 'thumb' => '../thumb/image_2.jpg',
                 'src' => '../big/image_2.jpg'
             ]
         ],
+        'options' => ['class' => 'row'],
+        'itemsOptions' => [
+            'tag' => 'div',
+            'class' => 'col-4 col-sm-5'
+        ],
         // more options http://sachinchoolur.github.io/lightGallery/docs/api.html
-        'options' => [
+        'pluginOptions' => [
             'mode' => 'lg-zoom-in-big',
             'download' => false,
             'zoom' => false,

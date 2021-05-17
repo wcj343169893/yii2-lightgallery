@@ -1,6 +1,6 @@
 <?php
 
-namespace dynamikaweb\lightgallery\src;
+namespace dynamikaweb\lightgallery;
 use yii\web\AssetBundle;
 
 class LightGalleryAsset extends AssetBundle

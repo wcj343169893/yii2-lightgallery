@@ -1,6 +1,6 @@
 <?php
 
-namespace dynamikaweb\lightgallery\src;
+namespace dynamikaweb\lightgallery;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -8,8 +8,10 @@ use yii\helpers\Json;
 
 class LightGallery extends \yii\base\Widget
 {
-    public $containerClass = 'k-ld';
     public $options = [];
+    public $pluginOptions = [];
+    public $itemsOptions = [];
+    public $imgOptions = [];
     public $items = [];
 
 
@@ -27,47 +29,51 @@ class LightGallery extends \yii\base\Widget
     {
         $items = [];
         if (count($this->items) > 0) {
+            $tag = ArrayHelper::remove($this->itemsOptions, 'tag',null);
             foreach ($this->items as $item) {
-                $items[] = $this->renderItem($item);
+                $items[] = $this->renderItem($item, $tag);
             }
         }
-        return Html::tag('div', implode("\n", array_filter($items)), ['class' => $this->containerClass, 'id' => $this->id]);
+        return Html::tag(ArrayHelper::remove($this->options, 'tag', 'div'), 
+            implode("\n", array_filter($items)), ArrayHelper::merge(['id' => $this->id], $this->options));
     }
 
-    public function renderItem($item)
+    public function renderItem($item, $tag)
     {
         $src = ArrayHelper::getValue($item, 'src');
         $thumb = ArrayHelper::getValue($item, 'thumb');
-        return Html::a(Html::img($thumb), $src);
+        $caption = ArrayHelper::getValue($item, 'caption', '');
+        $responsive = ArrayHelper::getValue($item, 'responsive', '');
+        $imgOptions = ArrayHelper::getValue($item, 'imgOptions');
+
+        if(isset($tag)){
+            return Html::tag($tag,
+                Html::a(Html::img($thumb, $imgOptions),''),
+                ArrayHelper::merge($this->itemsOptions, [
+                    'data-src' => $src,
+                    'data-sub-html' => $caption,
+                    'data-responsive' => $responsive
+                ])
+            );
+        } else {
+            return Html::a(Html::img($thumb, $imgOptions), 
+                $src,
+                [
+                    'data-sub-html' => $caption,
+                    'data-responsive' => $responsive
+                ]
+            );
+        }
+
     }
 
     public function registerClientScript()
     {
         $view = $this->getView();
         LightGalleryAsset::register($view);
-        $options = Json::encode($this->options);
-        $js = '$("#' . $this->id . '").lightGallery(' . $options . ');';
+        $pluginOptions = Json::encode($this->pluginOptions);
+        $js = '$("#' . $this->id . '").lightGallery(' . $pluginOptions . ');';
         $view->registerJs($js);
-        $this->addCss();
     }
 
-    public function addCss()
-    {
-        $css = "
-            .k-ld a img {
-                padding: 4px;
-                position: relative;
-                cursor: pointer;
-                width: 183px;
-                overflow: hidden;
-            }
-            .k-ld a{
-                border-bottom: none;
-                margin: 0 1px 1px 0;
-                transition: all 0.4s ease 0.1s;
-            }
-        ";
-        $this->getView()->registerCss($css);
-
-    }
 }
