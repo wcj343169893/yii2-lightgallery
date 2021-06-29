@@ -9,6 +9,7 @@ use yii\helpers\Json;
 class LightGallery extends \yii\base\Widget
 {
     public $options = [];
+    public $plugins = [];
     public $pluginOptions = [];
     public $itemsOptions = [];
     public $imgOptions = [];
@@ -17,6 +18,7 @@ class LightGallery extends \yii\base\Widget
 
     public function init()
     {
+        LightGalleryAsset::register($view);
         $this->registerClientScript();
     }
 
@@ -70,9 +72,17 @@ class LightGallery extends \yii\base\Widget
     public function registerClientScript()
     {
         $view = $this->getView();
-        LightGalleryAsset::register($view);
+        $plugins = Json::encode($this->plugins);
         $pluginOptions = Json::encode($this->pluginOptions);
-        $js = 'lightGallery(document.getElementById("'.$this->id.'"), '.$pluginOptions.');
+        $js = "
+            var plugins = [];
+            var pluginsArray = $plugins;
+            pluginsArray.forEach(function(item){
+                plugins.push(new item);
+                console.log(item);
+            });
+            console.log(plugins);";
+        $js .= 'lightGallery(document.getElementById("'.$this->id.'"), plugins)';
         $view->registerJs($js);
     }
 
