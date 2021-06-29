@@ -8,17 +8,15 @@ class LightGalleryAsset extends AssetBundle
     public $sourcePath = '@npm/lightgallery';
 
     public $css = [
-        'dist/css/lg-transitions.min.css',
-        'dist/css/lightgallery.min.css'
+        'css/lg-transitions.css',
+        'css/lightgallery.css'
     ];
 
     public $js = [
-        'dist/js/lightgallery-all.min.js',
+        'lightgallery.min.js',
     ];
 
-    public $depends = [
-        'yii\web\JqueryAsset',
-    ];
+    public $depends = [];
 
     public $publishOptions = [
         'forceCopy' => YII_DEBUG,
