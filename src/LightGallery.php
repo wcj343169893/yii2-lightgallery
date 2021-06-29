@@ -2,12 +2,28 @@
 
 namespace dynamikaweb\lightgallery;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
 
 class LightGallery extends \yii\base\Widget
 {
+    const NPM_PLUGINS = [
+        'lgThumbnail' => 'plugins/thumbnail/lg-thumbnail.min.js',
+        'lgZoom' => 'plugins/zoom/lg-zoom.min.js',
+        'lgAutoplay' => 'plugins/autoplay/lg-autoplay.min.js',
+        'lgComment' => 'plugins/comment/lg-comment.min.js',
+        'lgFullscreen' => 'plugins/fullscreen/lg-fullscreen.min.js',
+        'lgHash' => 'plugins/hash/lg-hash.min.js',
+        'lgMediumZoom' => 'plugins/mediumZoom/lg-medium-zoom.min.js',
+        'lgPager' => 'plugins/pager/lg-pager.min.js',
+        'lgRelativeCaption' => 'plugins/relativeCaption/lg-relative-caption.min.js',
+        'lgRotate' => 'plugins/rotate/lg-rotate.min.js',
+        'lgShare' => 'plugins/share/lg-share.min.js',
+        'lgVideo' => 'plugins/video/lg-video.min.js'
+    ];
+
     public $options = [];
     public $plugins = [];
     public $pluginOptions = [];
@@ -18,7 +34,11 @@ class LightGallery extends \yii\base\Widget
 
     public function init()
     {
-        LightGalleryAsset::register($view);
+        LightGalleryAsset::register($this->view);
+        $bundle = Yii::$app->assetManager->getBundle('\dynamikaweb\lightgallery\LightGalleryAsset');
+        foreach($this->plugins as $plugin) {
+            $this->view->registerJsFile('@web'.$bundle->baseUrl.'/'.self::NPM_PLUGINS[$plugin]);
+        }
         $this->registerClientScript();
     }
 
@@ -71,19 +91,17 @@ class LightGallery extends \yii\base\Widget
 
     public function registerClientScript()
     {
-        $view = $this->getView();
-        $plugins = Json::encode($this->plugins);
+
+        $id = $this->id;
         $pluginOptions = Json::encode($this->pluginOptions);
-        $js = "
-            var plugins = [];
-            var pluginsArray = $plugins;
-            pluginsArray.forEach(function(item){
-                plugins.push(new item);
-                console.log(item);
-            });
-            console.log(plugins);";
-        $js .= 'lightGallery(document.getElementById("'.$this->id.'"), plugins)';
-        $view->registerJs($js);
+        $plugins = str_replace('"','',Json::encode($this->plugins));
+        $js ="
+            var lightGallery_pluginsOptions_$id = {$pluginOptions};
+            lightGallery_pluginsOptions_$id.plugins = {$plugins};
+            
+            lightGallery(document.getElementById('$id'), lightGallery_pluginsOptions_$id);";
+
+        $this->view->registerJs($js);
     }
 
 }
