@@ -6,6 +6,11 @@ dynamikaweb/yii2-lightgallery
 ![quality](https://img.shields.io/scrutinizer/quality/g/dynamikaweb/yii2-lightgallery)
 ![build](https://img.shields.io/scrutinizer/build/g/dynamikaweb/yii2-lightgallery)
 
+Description
+-----------
+
+This Widget is based on [LightGallery](https://www.lightgalleryjs.com/) for use in Yii2 Framework. See full [documentattion](https://www.lightgalleryjs.com/docs)
+
 Installation
 ------------
 
@@ -66,6 +71,8 @@ Once the extension is installed, simply use it in your code by  :
     ]);
 ?>
 ```
+To add plugins just add their name to the plugins option `plugins =>['lgZoom]`, see the [full list](https://www.lightgalleryjs.com/docs/getting-started/#plugins).
+For other LightGallery options use pluginOptions, see [documentation](https://www.lightgalleryjs.com/docs/settings/).
 
 --------------------------------------------------------------------------------------------------------------
 [![dynamika soluções web](https://avatars.githubusercontent.com/dynamikaweb?size=12)](https://dynamika.com.br)
