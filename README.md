@@ -1,6 +1,10 @@
-jQuery lightgallery for Yii2
-============
-More information about gallery [here](http://sachinchoolur.github.io/lightGallery/).
+dynamikaweb/yii2-lightgallery
+=========================
+![php version](https://img.shields.io/packagist/php-v/dynamikaweb/yii2-lightgallery)
+![pkg version](https://img.shields.io/packagist/v/dynamikaweb/yii2-lightgallery)
+![license](https://img.shields.io/packagist/l/dynamikaweb/yii2-lightgallery)
+![quality](https://img.shields.io/scrutinizer/quality/g/dynamikaweb/yii2-lightgallery)
+![build](https://img.shields.io/scrutinizer/build/g/dynamikaweb/yii2-lightgallery)
 
 Installation
 ------------
@@ -50,7 +54,9 @@ Once the extension is installed, simply use it in your code by  :
             'tag' => 'div',
             'class' => 'col-4 col-sm-5'
         ],
-        // more options http://sachinchoolur.github.io/lightGallery/docs/api.html
+        // more plugins: 
+        'plugins' => ['lgZoom', 'lgThumbnail'],
+        // more options: 
         'pluginOptions' => [
             'mode' => 'lg-zoom-in-big',
             'download' => false,
@@ -59,3 +65,8 @@ Once the extension is installed, simply use it in your code by  :
         ]
     ]);
 ?>
+```
+
+--------------------------------------------------------------------------------------------------------------
+[![dynamika soluções web](https://avatars.githubusercontent.com/dynamikaweb?size=12)](https://dynamika.com.br)
+This project is under [LGPL V3.0](https://opensource.org/licenses/LGPL-3.0) license.

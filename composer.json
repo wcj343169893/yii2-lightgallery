@@ -3,12 +3,17 @@
     "description": "widget lightgallery",
     "type": "yii2-extension",
     "keywords": ["yii2","extension"," gallery"," photo"," video"," lightgallery"," plugin"],
-    "license": "BSD-3-Clause",
+    "license": "LGPL-3.0-only",
     "authors": [
         {
+            "name": "Rodrigo Dornelles",
+            "email": "rodrigo@dynamika.com.br",
+            "role": "Developer"
+        },
+        {
             "name": "Robson Soares",
-            "email": "contato@robsonsoares.dev.br",
-            "role": "developer"
+            "email": "robson@dynamika.com.br",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -21,5 +26,11 @@
         "psr-4": {
             "dynamikaweb\\lightgallery\\": "src"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
