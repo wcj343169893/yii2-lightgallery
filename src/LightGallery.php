@@ -72,7 +72,7 @@ class LightGallery extends \yii\base\Widget
         $view = $this->getView();
         LightGalleryAsset::register($view);
         $pluginOptions = Json::encode($this->pluginOptions);
-        $js = '$("#' . $this->id . '").lightGallery(' . $pluginOptions . ');';
+        $js = 'lightGallery(document.getElementById("'.$this->id.'"), '.$pluginOptions.');
         $view->registerJs($js);
     }
 
