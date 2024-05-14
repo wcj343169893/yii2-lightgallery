@@ -1,6 +1,6 @@
 <?php
 
-namespace dynamikaweb\lightgallery;
+namespace wcj343169893\lightgallery;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -24,10 +24,15 @@ class LightGallery extends \yii\base\Widget
         'lgVideo' => 'plugins/video/lg-video.min.js'
     ];
 
-    public $options = [];
+    public $options = [
+        'class' => 'lg-item-container'
+    ];
     public $plugins = [];
     public $pluginOptions = [];
-    public $itemsOptions = [];
+    public $itemsOptions = [
+        'tag' => 'div',
+        'class' => 'lg-item'
+    ];
     public $imgOptions = [];
     public $items = [];
 
@@ -35,11 +40,12 @@ class LightGallery extends \yii\base\Widget
     public function init()
     {
         LightGalleryAsset::register($this->view);
-        $bundle = Yii::$app->assetManager->getBundle('\dynamikaweb\lightgallery\LightGalleryAsset');
+        $bundle = Yii::$app->assetManager->getBundle('\wcj343169893\lightgallery\LightGalleryAsset');
         foreach($this->plugins as $plugin) {
-            $this->view->registerJsFile('@web'.$bundle->baseUrl.'/'.self::NPM_PLUGINS[$plugin]);
+            $this->view->registerJsFile($bundle->baseUrl.'/'.self::NPM_PLUGINS[$plugin]);
         }
         $this->registerClientScript();
+        $this->registerClientStyle();
     }
 
     public function run()
@@ -102,6 +108,31 @@ class LightGallery extends \yii\base\Widget
             lightGallery(document.getElementById('$id'), lightGallery_pluginsOptions_$id);";
 
         $this->view->registerJs($js);
+    }
+
+    public function registerClientStyle()
+    {
+        $id = $this->id;
+        $css = "
+            .lg-item-container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        
+            .lg-item-container .lg-item {
+                width: 100px;
+                height: 80px;
+                margin-right: 5px;
+            }
+            .lg-item-container .lg-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                border-radius: 5px;
+            }
+        ";
+        $this->view->registerCss($css);
     }
 
 }

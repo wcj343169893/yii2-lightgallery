@@ -1,5 +1,5 @@
 {
-    "name": "dynamikaweb/yii2-lightgallery",
+    "name": "wcj343169893/yii2-lightgallery",
     "description": "widget lightgallery",
     "type": "yii2-extension",
     "keywords": ["yii2","extension"," gallery"," photo"," video"," lightgallery"," plugin"],
@@ -24,7 +24,7 @@
     "prefer-stable": false,
     "autoload": {
         "psr-4": {
-            "dynamikaweb\\lightgallery\\": "src"
+            "wcj343169893\\lightgallery\\": "src"
         }
     },
     "repositories": [

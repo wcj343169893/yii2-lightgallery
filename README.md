@@ -19,13 +19,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-composer require dynamikaweb/yii2-lightgallery
+composer require wcj343169893/yii2-lightgallery
 ```
 
 or add
 
 ```
-"dynamikaweb/yii2-lightgallery": "*"
+"wcj343169893/yii2-lightgallery": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -38,7 +38,7 @@ Once the extension is installed, simply use it in your code by  :
 
 ```php
 <?php
-    echo \dynamikaweb\lightgallery\LightGallery::widget([
+    echo \wcj343169893\lightgallery\LightGallery::widget([
         'items' => [
             [
                 'thumb' => '../thumb/image_1.jpg',
