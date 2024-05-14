@@ -54,20 +54,8 @@ Once the extension is installed, simply use it in your code by  :
                 'src' => '../big/image_2.jpg'
             ]
         ],
-        'options' => ['class' => 'row'],
-        'itemsOptions' => [
-            'tag' => 'div',
-            'class' => 'col-4 col-sm-5'
-        ],
         // more plugins: 
-        'plugins' => ['lgZoom', 'lgThumbnail'],
-        // more options: 
-        'pluginOptions' => [
-            'mode' => 'lg-zoom-in-big',
-            'download' => false,
-            'zoom' => false,
-            'share' => false
-        ]
+        'plugins' => ['lgZoom', 'lgThumbnail']
     ]);
 ?>
 ```
